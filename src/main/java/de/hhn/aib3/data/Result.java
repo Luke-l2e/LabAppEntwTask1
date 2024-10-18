@@ -1,6 +1,6 @@
 package de.hhn.aib3.data;
 
-import java.util.HashMap;
+import java.util.Collection;
 
-public record Result(HashMap<String, Customer> result) {
+public record Result(Collection<Customer> result) {
 }
