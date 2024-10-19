@@ -2,7 +2,7 @@ version: '3.8'
 services:
   java-app:
     build: .
-    container_name: cloudService
+    container_name: cloudservice
     environment:
       - CONNECTION_URL=http://assessment:8080
     networks:
