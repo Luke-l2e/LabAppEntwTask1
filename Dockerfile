@@ -26,5 +26,6 @@ WORKDIR /app
 # Copy the built JAR file from the first stage
 COPY --from=builder /app/build/libs/*.jar app.jar
 
+EXPOSE 8080
 # Run the main class from the JAR
 ENTRYPOINT ["java", "-cp", "app.jar", "de.hhn.aib3.Main"]

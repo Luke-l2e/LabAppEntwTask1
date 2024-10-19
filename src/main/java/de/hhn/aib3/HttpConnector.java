@@ -1,5 +1,7 @@
 package de.hhn.aib3;
 
+import de.hhn.aib3.data.UrlExtensions;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,20 +10,21 @@ import java.net.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.security.InvalidKeyException;
 
 public class HttpConnector {
+    private final String BASE_URL = "http://localhost:8080";
+
     /**
      * Returns the json file from the website as String
      *
      * @return String
      */
     public String fetchDatasetAsJson() {
-        try (InputStream inputStream = new URI(getWebsiteUrl("website.dataset")).toURL().openStream();
+        try (InputStream inputStream = new URI(getWebsiteUrl(UrlExtensions.DATASET)).toURL().openStream();
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().reduce("", (acc, line) -> acc + line);
         } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -34,7 +37,7 @@ public class HttpConnector {
         HttpResponse<String> response;
         try (HttpClient client = HttpClient.newHttpClient()) {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(getWebsiteUrl("website.result")))
+                    .uri(URI.create(getWebsiteUrl(UrlExtensions.RESULT)))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                     .build();
@@ -50,22 +53,13 @@ public class HttpConnector {
     /**
      * Returns the website url.
      *
-     * @param site An url ending from the connection.properties file to be added to the base url
+     * @param extension The url extension to be added to the base url
      * @return String
      */
-    private String getWebsiteUrl(String site) {
-        String url = "";
-        try {
-            url += PropertyManager.getInstance().getProperty("website");
-            if (null != site && !site.isBlank()) {
-                url += PropertyManager.getInstance().getProperty(site);
-            }
-        } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
+    private String getWebsiteUrl(UrlExtensions extension) {
+        if (null != extension) {
+            return BASE_URL + extension.path;
         }
-        if (url.isBlank()) {
-            throw new RuntimeException("website dataset is incorrect");
-        }
-        return url;
+        return BASE_URL;
     }
 }
