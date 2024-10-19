@@ -41,5 +41,20 @@ jobs:
 
       - name: Start Java App using Docker Compose
         run: |
-          docker compose up -d
-          sleep 15
+          docker compose up -d --wait -w
+
+      - name: Wait for Java App to Start
+        run: |
+          sleep 10
+
+      - name: Run Java App
+        id: run_java_app
+        run: |
+          # Execute Java app and capture output
+          output=$(docker run --network my_network --rm cloudService)
+          echo "Java App Output: $output"
+          echo "::set-output name=java_output::$output"
+          
+          - name: Use Java App Output
+            run: |
+              echo "The output from the Java app is: ${{ steps.run_java_app.outputs.java_output }}"

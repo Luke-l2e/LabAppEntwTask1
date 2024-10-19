@@ -11,6 +11,5 @@ public class Main {
         Result result = dataProcessor.processDatasetToResult(dataset);
         String resultJson = dataProcessor.convertResultToJson(result);
         httpConnector.sendResult(resultJson);
-        throw new RuntimeException("TestError");
     }
 }

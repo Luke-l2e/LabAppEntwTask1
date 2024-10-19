@@ -12,7 +12,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class HttpConnector {
-    private final String BASE_URL = "http://localhost:8080";
+    private final String BASE_URL = "http://assessment:8080";
 
     /**
      * Returns the json file from the website as String
