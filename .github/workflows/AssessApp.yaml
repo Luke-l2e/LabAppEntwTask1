@@ -41,7 +41,7 @@ jobs:
 
       - name: Start Java App using Docker Compose
         run: |
-          docker compose up -d --wait -w
+          docker compose up -d --wait -w || docker logs cloudService || exit 1
 
       - name: Wait for Java App to Start
         run: |
