@@ -48,6 +48,7 @@ public class HttpConnector {
         if (response.statusCode() != HttpURLConnection.HTTP_OK) {
             throw new RuntimeException(response.body());
         }
+        System.out.println("Request response: " + response.body());
     }
 
     /**
