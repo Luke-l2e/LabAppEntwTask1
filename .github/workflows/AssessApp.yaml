@@ -39,10 +39,6 @@ jobs:
         run: |
           curl -f http://localhost:8080/health || exit 1
 
-  run_app:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Start Java App using Docker Compose
         run: |
           docker-compose up -d
