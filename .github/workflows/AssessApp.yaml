@@ -2,14 +2,11 @@ name: build-push
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  test:
+  run_service:
     runs-on: ubuntu-latest
 
     steps:
@@ -42,6 +39,10 @@ jobs:
         run: |
           curl -f http://localhost:8080/health || exit 1
 
+  run_app:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Start Java App using Docker Compose
         run: |
           docker-compose up -d
