@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  run_service:
+  run_service_and_test_app:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,4 +41,4 @@ jobs:
 
       - name: Start Java App using Docker Compose
         run: |
-          docker-compose up -d
+          docker compose up -d
