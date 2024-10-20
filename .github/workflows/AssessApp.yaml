@@ -59,7 +59,10 @@ jobs:
           echo "#########  "
           ls
           echo "###################  grep"
-          grep gson -i
+          grep gson -i || echo "No gson found..."
+      - name: List .gradle directory
+        run: |
+          ls -lar ~/.gradle
 
       - name: Run Java App
         run: |
