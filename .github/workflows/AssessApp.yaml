@@ -58,6 +58,8 @@ jobs:
           ls build/
           echo "#########  "
           ls
+          echo "###################  grep"
+          grep gson -i
 
       - name: Run Java App
         run: |
