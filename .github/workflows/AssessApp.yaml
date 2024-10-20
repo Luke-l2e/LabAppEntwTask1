@@ -48,4 +48,11 @@ jobs:
 
       - name: Run Java App
         run: |
-          java -jar build/libs/*.jar
+          # Capture output from the Java app
+          output=$(java -jar build/libs/*.jar)
+          echo "Output: $output"
+          echo "::set-output name=status_code::$(echo "$output" | grep -o '200' || true)" # Check for '200'
+          if [ -z "${{ steps.run_java_app.outputs.status_code }}" ]; then
+            echo "Status code 200 not found, exiting with error."
+            exit 1
+          fi
