@@ -42,13 +42,9 @@ jobs:
       - name: Grant Execute Permission for Gradle Wrapper
         run: chmod +x ./gradlew
 
-      - name: Build gradle
+      - name: Build gradle with shadowJar
         run: |
           ./gradlew clean shadowJar
-
-      - name: List libs
-        run: |
-          ls build/libs/
 
       - name: Run Java App
         run: |
