@@ -63,6 +63,9 @@ jobs:
       - name: List .gradle directory
         run: |
           ls -laR ~/.gradle
+      - name: Search for .jar files
+        run: |
+          find ~/.gradle -name '*.jar'
 
       - name: Run Java App
         run: |
