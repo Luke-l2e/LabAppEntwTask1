@@ -52,7 +52,7 @@ jobs:
           output=$(java -jar build/libs/*.jar)
           echo "Output: $output"
            # Extract the status code from the output
-          status_code=$(echo "$output" | grep -oP '"code":[0-9]*')
+          status_code=$(echo "$output" | grep -oP '"code":[0-9]*' | cut -d ":" -f 2)
 
           # Output the status code to the environment
           echo "status_code=$status_code" >> $GITHUB_ENV
