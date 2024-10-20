@@ -39,27 +39,11 @@ jobs:
         run: |
           curl -f http://localhost:8080/health || exit 1
 
+      - name: Grant Execute Permission for Gradle Wrapper
+        run: chmod +x ./gradlew
+
+
       - name: Run Java App
         run: |
           ./gradlew clean build
           java -cp build/libs/*.jar de.hhn.aib3.Main
-#
-#      - name: Start Java App using Docker Compose
-#        run: |
-#          docker compose up -d --wait -w || docker logs cloudservice || exit 1
-#
-#      - name: Wait for Java App to Start
-#        run: |
-#          sleep 10
-#
-#      - name: Run Java App
-#        id: run_java_app
-#        run: |
-#          # Execute Java app and capture output
-#          output=$(docker run --network my_network --rm cloudservice)
-#          echo "Java App Output: $output"
-#          echo "::set-output name=java_output::$output"
-#
-#          - name: Use Java App Output
-#            run: |
-#              echo "The output from the Java app is: ${{ steps.run_java_app.outputs.java_output }}"
