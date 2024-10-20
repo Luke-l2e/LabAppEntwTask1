@@ -51,10 +51,16 @@ jobs:
           # Capture output from the Java app
           output=$(java -jar build/libs/*.jar)
           echo "Output: $output"
-          echo "status_code=$(echo "$output" | grep -o '"code":[0-9]*' | cut -d: -f2)" >> $GITHUB_ENV
+           # Extract the status code from the output
+          status_code=$(echo "$output" | grep -oP '"code":[0-9]*')
+
+          # Output the status code to the environment
+          echo "status_code=$status_code" >> $GITHUB_ENV
           
+          echo "Statuscode:     $status_code"
+
           # Check if the status code is 200
-          if [ "${{ env.status_code }}" != "200" ]; then
+          if [ "$status_code" != "200" ]; then
             echo "Status code not found or is not 200, exiting with error."
             exit 1
           fi
