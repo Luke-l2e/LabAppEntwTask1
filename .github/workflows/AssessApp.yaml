@@ -45,13 +45,8 @@ jobs:
 
       - name: Build gradle
         run: |
-          ./gradlew clean build
-
-      - name: Refresh dependencies
-        run: |
-          ./gradlew --refresh-dependencies
+          ./gradlew clean build --refresh-dependencies
 
       - name: Run Java App
         run: |
-          ./gradlew clean build
           java -cp build/libs/*.jar de.hhn.aib3.Main
