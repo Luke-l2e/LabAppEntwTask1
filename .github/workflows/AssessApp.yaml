@@ -42,31 +42,14 @@ jobs:
       - name: Grant Execute Permission for Gradle Wrapper
         run: chmod +x ./gradlew
 
-
       - name: Build gradle
         run: |
-          ./gradlew clean build --refresh-dependencies
-
-      - name: List dependencies
-        run: |
-          ./gradlew dependencies
+          ./gradlew clean shadowJar
 
       - name: List libs
         run: |
           ls build/libs/
-          echo "#########  build/"
-          ls build/
-          echo "#########  "
-          ls
-          echo "###################  grep"
-          grep gson -i || echo "No gson found..."
-      - name: List .gradle directory
-        run: |
-          ls -laR ~/.gradle
-      - name: Search for .jar files
-        run: |
-          find ~/.gradle -name '*.jar'
 
       - name: Run Java App
         run: |
-          java -cp build/libs/*.jar de.hhn.aib3.Main
+          java -jar build/libs/*.jar

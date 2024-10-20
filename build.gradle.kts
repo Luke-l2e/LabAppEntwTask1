@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "de.hhn.aib3"
@@ -19,4 +20,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+// Create a shadow JAR with all dependencies
+tasks {
+    shadowJar {
+        archiveBaseName.set("app")              // Set JAR's base name
+        archiveClassifier.set("")               // Set no classifier to replace the default JAR
+        archiveVersion.set(version.toString())  // Include version in JAR name
+    }
 }
