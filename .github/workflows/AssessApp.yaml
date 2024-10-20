@@ -51,6 +51,12 @@ jobs:
         run: |
           ./gradlew dependencies
 
+      - name: List libs
+        run: |
+          ls build/libs/*.jar
+          echo #########
+          ls build/libs/
+
       - name: Run Java App
         run: |
           java -cp build/libs/*.jar de.hhn.aib3.Main
