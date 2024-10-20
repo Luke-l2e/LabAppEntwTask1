@@ -29,5 +29,8 @@ tasks {
         archiveBaseName.set("app")              // Set JAR's base name
         archiveClassifier.set("")               // Set no classifier to replace the default JAR
         archiveVersion.set(version.toString())  // Include version in JAR name
+        manifest {
+            attributes["Main-Class"] = "de.hhn.aib3.Main" // Main class
+        }
     }
 }
