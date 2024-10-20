@@ -11,12 +11,3 @@ Entwicklung eines Systems zur Berechnung der Gesamtnutzungszeit von Cloud-Kunden
    * Liest Rohdaten über eine Webschnittstelle aus
    * Aggregiert die Informationen
    * Sendet das Ergebnis an ein Referenzsystem
-## ToDo's
-1. Error: Exception in thread "main" java.lang.NoClassDefFoundError: com/google/gson/Gson
-<br>![img_1.png](img_1.png)
-<br>gradle build may not work properly or needs more time
-<br>Use shadow plugin to put the external libraries (gson) into the .jar file
-2. docker: invalid reference format: repository name (library/cloudService) must be lowercase.
-<br>See 'docker run --help'.
-<br>Error: Process completed with exit code 125.
-<br>![img.png](img.png)

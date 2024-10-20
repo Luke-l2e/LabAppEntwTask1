@@ -1,6 +1,9 @@
-package de.hhn.aib3.data;
+package de.hhn.aib3;
 
 import com.google.gson.Gson;
+import de.hhn.aib3.data.Customer;
+import de.hhn.aib3.data.Dataset;
+import de.hhn.aib3.data.Result;
 
 import java.util.HashMap;
 
