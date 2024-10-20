@@ -43,6 +43,14 @@ jobs:
         run: chmod +x ./gradlew
 
 
+      - name: Build gradle
+        run: |
+          ./gradlew clean build
+
+      - name: Refresh dependencies
+        run: |
+          ./gradlew --refresh-dependencies
+
       - name: Run Java App
         run: |
           ./gradlew clean build
